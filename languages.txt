@@ -1,0 +1,5 @@
+language,code
+English,us
+Spanish,latam
+German,de
+Russian,ru
