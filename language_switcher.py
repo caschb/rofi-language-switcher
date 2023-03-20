@@ -32,11 +32,9 @@ def show_menu(languages):
 
 if (__name__ == "__main__"):
     languages = []
-    index = 0
     with open('languages.txt', 'r', encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             languages.append((row['language'], row['code']))
-            index += 1
 
     show_menu(languages)
