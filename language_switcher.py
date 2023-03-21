@@ -1,6 +1,7 @@
 #!/bin/python
 import os
 import csv
+import sys
 
 class Rofi:
     def __init__(self, args=None):
@@ -17,12 +18,13 @@ class Rofi:
 
         return int(ans)
 
+
 def show_menu(languages):
     rofi = Rofi()
 
     options = []
     for lang in languages:
-        options.append(lang[1])
+        options.append(lang[0])
 
     selected = 0
     selected = rofi.select("Select layout", options, selected)
@@ -30,9 +32,11 @@ def show_menu(languages):
     if selected != -1:
         os.popen(f'setxkbmap {languages[selected][1]}')
 
+
 if (__name__ == "__main__"):
+    languages_file = os.path.join(sys.path[0], 'languages.txt')
     languages = []
-    with open('languages.txt', 'r', encoding='utf8') as csvfile:
+    with open(languages_file, 'r', encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             languages.append((row['language'], row['code']))
